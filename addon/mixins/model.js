@@ -65,13 +65,7 @@ export default Ember.Mixin.create({
     var value = this.reloadRelationship(propertyName, JSON.stringify(params) === JSON.stringify(oldParams));
 
     //return the promise, clearing the ajax options property
-    return value.catch(function (error) {
-      if (error instanceof DS.AbortError) {
-        //ignore aborted requests
-        return;
-      }
-      throw error;
-    }).finally(function () {
+    return value.finally(function () {
       if (self.get(_queryIdPropertyName) !== currentQueryId) {
         //don't clear parameters if they've been set by another request
         return;
