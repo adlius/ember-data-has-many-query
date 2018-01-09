@@ -62,7 +62,7 @@ export default Ember.Mixin.create({
     this.set(_queryIdPropertyName, currentQueryId);
 
     //get the relationship value, reloading if necessary
-    var value = this.reloadRelationship(propertyName, JSON.stringify(params) === JSON.stringify(oldParams));
+    var value = this.reloadRelationship(propertyName, JSON.stringify(params) != JSON.stringify(oldParams));
 
     //return the promise, clearing the ajax options property
     return value.finally(function () {
